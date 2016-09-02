@@ -1,0 +1,7 @@
+{
+  "name": "octopusjs",
+  "version": "0.0.1",
+  "dependencies": {
+    "mongoose": "^4.5.10"
+  }
+}
