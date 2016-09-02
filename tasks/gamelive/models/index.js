@@ -1,3 +1,5 @@
-/**
- * Created by zhangjinyi on 16/9/2.
- */
+var mongoose = require('mongoose');
+
+require('./liveroom');
+
+exports.LiveRoom = mongoose.model('LiveRoom');

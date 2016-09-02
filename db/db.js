@@ -1,8 +1,15 @@
 'use strict';
 
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-var init = function(dbConf){
+var init = function(dbConf, cb){
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'Mongodb connection error:'));
+    db.once('open', function() {
+        console.log('Mongodb connection initialized');
+        cb();
+    });
+
     var connectString = 'mongodb://';
     for (var i = 0; i < dbConf.instance.length; i++) {
         connectString += dbConf.instance[i].host + ':' + dbConf.instance[i].port;
