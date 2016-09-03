@@ -1,14 +1,7 @@
-var BaseRequester = require('../../../base/requester');
-var util = require('util');
 var request = require('request');
 
-function Requester(){
-    BaseRequester.call(this);
-}
-util.inherits(Requester, BaseRequester);
-
-Requester.prototype.getLiveRooms = function(cate){
-    var url = 'http://open.douyucdn.cn/api/RoomApi/live/' + cate + '?offset=0&limit=100';
+var getLiveRooms = function(ename){
+    var url = "http://www.quanmin.tv/json/categories/" + ename + "/list.json";
     var options = {
         url: url,
         method: 'GET',
@@ -19,6 +12,7 @@ Requester.prototype.getLiveRooms = function(cate){
             if (err) {
                 return reject(err);
             }
+
             try {
                 var res = JSON.parse(body);
                 var data = res.data;
@@ -34,4 +28,6 @@ Requester.prototype.getLiveRooms = function(cate){
     });
 };
 
-module.exports = Requester;
+module.exports = {
+    getLiveRooms: getLiveRooms
+};

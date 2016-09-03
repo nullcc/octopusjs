@@ -2,7 +2,7 @@
  * 斗鱼平台数据解析
  */
 
-var Meta = require('./config/meta').meta;
+var Meta = require('../../config/meta').meta;
 
 function dataHandler(room){
     return {

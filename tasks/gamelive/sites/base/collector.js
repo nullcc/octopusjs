@@ -8,8 +8,13 @@ function Collector(){
 util.inherits(Collector, BaseCollector);
 
 Collector.prototype.onRooms = function(rooms){
-    util.log('collector on rooms');
-    util.log(rooms.length);
+    var dataHandler = require('../'+this.scheduler.siteName+'/handler').dataHandler;
+    var roomObjs = rooms.map(function(room){
+        return dataHandler(room);
+    });
+
+    this.scheduler.emit('processed', roomObjs);
 };
 
 module.exports = Collector;
+

@@ -1,6 +1,6 @@
 'use strict';
 
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
 
 var init = function(dbConf, cb){
     var db = mongoose.connection;
