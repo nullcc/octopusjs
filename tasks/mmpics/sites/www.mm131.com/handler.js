@@ -61,7 +61,6 @@ function parseAlbumInfo(tagName, data){
                     });
                 }
             });
-
             return albums;
         }
     });

@@ -5,18 +5,18 @@ var Models = require('../../models');
 
 function Pipeline(){
     BasePipeline.call(this);
-    this.on('save', this.onSave);
+    this.on('saveAlbums', this.onSaveAlbums);
 }
 util.inherits(Pipeline, BasePipeline);
 
-Pipeline.prototype.onSave = function(albums){
+Pipeline.prototype.onSaveAlbums = function(albums){
     var self = this;
-    this.save(albums, function(err, total){
+    this.saveAlbums(albums, function(err, total){
         self.scheduler.emit('savedAlbums', total);
     });
 };
 
-Pipeline.prototype.save = function(albums, cb){
+Pipeline.prototype.saveAlbums = function(albums, cb){
     var funcs = albums.map(function(album){
         return function(callback){
             var con = {site: album.site, id: album.id}; // 更新条件为site+id

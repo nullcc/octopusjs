@@ -2,7 +2,6 @@ var async = require('async');
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 var Data = require('./data.json');
-var Handler = require('./handler');
 var Models = require('../../models');
 
 module.exports = Scheduler;
@@ -18,8 +17,8 @@ function Scheduler(requester, collector, pipeline, cb){
     this.collector.scheduler = this;
     this.pipeline.scheduler = this;
 
-    this.on('tags', this.onTags);
-    this.on('albums', this.onAlbums);
+    this.on('tagsProcessed', this.onTagsProcessed);
+    this.on('albumsProcessed', this.onAlbumsProcessed);
     this.on('savedAlbums', this.onSavedAlbums);
 }
 util.inherits(Scheduler, EventEmitter);
@@ -32,11 +31,11 @@ Scheduler.prototype.start = function() {
 Scheduler.prototype.getTagInfo = function(tagData){
     var self = this;
     var funcs = tagData.map(function(tag){
-        return function(callback){
+        return function(callback) {
             self.requester.getTagInfo(tag.name)
-                .then(function(data){
+                .then(function (data) {
                     callback(null, data);
-                }, function(err){
+                }, function (err) {
                     callback(err);
                 })
         }
@@ -48,7 +47,7 @@ Scheduler.prototype.getTagInfo = function(tagData){
             results.forEach(function (result) {
                 tags = tags.concat(result);
             });
-            self.emit('tags', tags);
+            self.collector.emit('tags', tagData, tags);
         });
 };
 
@@ -71,16 +70,16 @@ Scheduler.prototype.getAlbums = function(tags){
             results.forEach(function(result){
                 albums = albums.concat(result);
             });
-            self.emit('albums', albums);
+            self.collector.emit('albums', tags, albums);
         });
 };
 
-Scheduler.prototype.onTags = function(tags) {
+Scheduler.prototype.onTagsProcessed = function(tags) {
     this.getAlbums(tags);
 };
 
-Scheduler.prototype.onAlbums = function(albums) {
-    this.pipeline.emit('save', albums);
+Scheduler.prototype.onAlbumsProcessed = function(albums) {
+    this.pipeline.emit('saveAlbums', albums);
 };
 
 Scheduler.prototype.onSavedAlbums = function(total) {

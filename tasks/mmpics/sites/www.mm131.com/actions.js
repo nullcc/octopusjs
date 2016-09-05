@@ -15,8 +15,7 @@ var getTagInfo = function(tag){
                 if (err) {
                     return reject(err);
                 }
-                var tagInfo = Handler.parseTagInfo(tag, res.text);
-                return resolve(tagInfo);
+                return resolve(res.text);
             });
     });
 };
