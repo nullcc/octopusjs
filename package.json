@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "scripts": {
     "gamelive_init": "node tasks/gamelive/scripts/init.js",
-    "gamelive_getdata": "node tasks/gamelive/main.js"
+    "gamelive_getdata": "node tasks/gamelive/main.js",
+    "mmpics_": "node --harmony sites/index.js",
+    "mmpics_getdata": "node --harmony tasks/gamelive/scripts/getpics.js"
+
   },
   "dependencies": {
     "async": "^2.0.1",

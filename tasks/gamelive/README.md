@@ -194,6 +194,7 @@
 
     npm run-script gamelive_getdata
     
+P.S. 如果要添加新的自定义脚本,可以在octopusjs根目录下的package.json文件的"scripts"字段中添加.
 
 ## 五. 元数据配置
 
