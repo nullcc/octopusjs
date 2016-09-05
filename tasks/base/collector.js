@@ -1,3 +1,7 @@
+/**
+ * collector基础对象
+ */
+
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 

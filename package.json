@@ -1,6 +1,10 @@
 {
   "name": "octopusjs",
   "version": "0.0.1",
+  "scripts": {
+    "gamelive_init": "node tasks/gamelive/scripts/init.js",
+    "gamelive_getdata": "node tasks/gamelive/main.js"
+  },
   "dependencies": {
     "async": "^2.0.1",
     "bluebird": "^3.4.6",
