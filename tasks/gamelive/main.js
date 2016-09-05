@@ -1,5 +1,5 @@
 var async = require('async');
-var dbConf = require('../../config/config.json').db;
+var dbConf = require('./config/config.json').db;
 var dbInit = require('../../db/db').init;
 
 dbInit(dbConf, function(){

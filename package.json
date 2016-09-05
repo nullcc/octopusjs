@@ -4,16 +4,17 @@
   "scripts": {
     "gamelive_init": "node tasks/gamelive/scripts/init.js",
     "gamelive_getdata": "node tasks/gamelive/main.js",
-    "mmpics_": "node --harmony sites/index.js",
-    "mmpics_getdata": "node --harmony tasks/gamelive/scripts/getpics.js"
-
+    "mmpics_getdata": "node --harmony tasks/mmpics/main.js"
   },
   "dependencies": {
     "async": "^2.0.1",
     "bluebird": "^3.4.6",
+    "htmlparser": "^1.7.7",
     "mongoose": "^4.5.10",
     "request": "^2.74.0",
-    "superagent": "^2.2.0"
+    "superagent": "^2.2.0",
+    "superagent-charset": "^1.1.1",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
